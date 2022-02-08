@@ -5,182 +5,160 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
-        android:id="@+id/heading1"
+        android:id="@+id/homeFragmentHeading1"
         style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Weather"
-
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card1"
+        android:id="@+id/homeFragmentCardView1"
         style="@style/Widget.Material3.CardView.Filled"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="150dp"
         android:layout_margin="25dp"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentHeading1" />
 
-        app:layout_constraintTop_toBottomOf="@id/heading1" />
+    <ImageView
+        android:id="@+id/homeFragmentWeatherIcon"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="@id/homeFragmentCardView1"
+        app:layout_constraintTop_toTopOf="@id/homeFragmentCardView1"
+        app:weatherIconColor="?android:attr/textColorPrimary"
+        app:weatherIconResource="@string/wi_storm_showers"
+        app:weatherIconSize="50" />
 
     <TextView
-        android:id="@+id/text1"
-        style="@style/TextAppearance.Material3.TitleLarge"
+        android:id="@+id/homeFragmentTemperatureTextView"
+        style="@style/TextAppearance.Material3.DisplayLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="23°C"
-
-        app:layout_constraintBottom_toTopOf="@id/text2"
-        app:layout_constraintLeft_toLeftOf="@id/card1"
-        app:layout_constraintTop_toTopOf="@id/card1" />
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:text="23°"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="@id/homeFragmentCardView1"
+        app:layout_constraintTop_toTopOf="@id/homeFragmentCardView1" />
 
     <TextView
-        android:id="@+id/text2"
+        android:id="@+id/homeFragmentFeelsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="16:30 Friday, June 22"
-
-        app:layout_constraintBottom_toTopOf="@id/card2"
-        app:layout_constraintLeft_toLeftOf="@id/text1"
-        app:layout_constraintTop_toBottomOf="@id/text1" />
+        android:text="Feels like 23°"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentTemperatureTextView"
+        app:layout_constraintLeft_toLeftOf="@id/homeFragmentTemperatureTextView" />
 
     <TextView
-        android:id="@+id/text3"
+        android:id="@+id/homeFragmentLocationTextView"
         style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:text="New York"
-
-        app:layout_constraintBottom_toTopOf="@+id/card2"
-        app:layout_constraintRight_toRightOf="@id/card1"
-        app:layout_constraintTop_toTopOf="@id/card1" />
+        android:text="Heavy Rain"
+        app:layout_constraintBottom_toBottomOf="@id/homeFragmentCardView1"
+        app:layout_constraintLeft_toLeftOf="@id/homeFragmentWeatherIcon"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentWeatherIcon" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card2"
+        android:id="@+id/homeFragmentCardView2"
         style="@style/Widget.Material3.CardView.Outlined"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_margin="5dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/homeFragmentCardView1"
+        app:layout_constraintRight_toRightOf="@id/homeFragmentCardView1"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentCardView1" />
 
-        app:layout_constraintBottom_toBottomOf="@id/card1"
-        app:layout_constraintLeft_toLeftOf="@id/card1"
-        app:layout_constraintRight_toRightOf="@id/card1" />
 
-    <com.github.pwittchen.weathericonview.WeatherIconView
-        android:id="@+id/icon1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+    <TextView
+        android:id="@+id/homeFragmentTextView1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/card2"
-        app:layout_constraintLeft_toLeftOf="@id/card2"
-        app:layout_constraintRight_toLeftOf="@id/text4"
-
-        app:layout_constraintTop_toTopOf="@id/card2"
-        app:weatherIconColor="?android:attr/textColorPrimary"
-        app:weatherIconResource="@string/wi_storm_showers"
-        app:weatherIconSize="20" />
+        android:text="Wind"
+        app:layout_constraintLeft_toLeftOf="@id/homeFragmentCardView2"
+        app:layout_constraintRight_toLeftOf="@id/homeFragmentTextView2"
+        app:layout_constraintTop_toTopOf="@id/homeFragmentCardView2"
+        app:layout_constraintBottom_toTopOf="@id/homeFragmentWindTextView"/>
 
     <TextView
-        android:id="@+id/text4"
-        android:layout_width="wrap_content"
+        android:id="@+id/homeFragmentTextView2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Low Temp"
-
-        app:layout_constraintBottom_toTopOf="@id/text5"
-        app:layout_constraintLeft_toRightOf="@id/icon1"
-        app:layout_constraintRight_toLeftOf="@id/icon2"
-        app:layout_constraintTop_toTopOf="@id/card2" />
-
-    <TextView
-        android:id="@+id/text5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="23°C"
-
-        app:layout_constraintBottom_toBottomOf="@id/card2"
-        app:layout_constraintLeft_toLeftOf="@id/text4"
-        app:layout_constraintTop_toBottomOf="@+id/text4" />
-
-    <com.github.pwittchen.weathericonview.WeatherIconView
-        android:id="@+id/icon2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/card2"
-        app:layout_constraintLeft_toRightOf="@id/text4"
-        app:layout_constraintRight_toLeftOf="@id/text6"
-
-        app:layout_constraintTop_toTopOf="@id/card2"
-        app:weatherIconColor="?android:attr/textColorPrimary"
-        app:weatherIconResource="@string/wi_storm_showers"
-        app:weatherIconSize="20" />
+        android:text="Humidity"
+        app:layout_constraintLeft_toRightOf="@id/homeFragmentTextView1"
+        app:layout_constraintRight_toLeftOf="@id/homeFragmentTextView3"
+        app:layout_constraintTop_toTopOf="@id/homeFragmentCardView2"
+        app:layout_constraintBottom_toTopOf="@id/homeFragmentHumidityTextView"/>
 
     <TextView
-        android:id="@+id/text6"
-        android:layout_width="wrap_content"
+        android:id="@+id/homeFragmentTextView3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="High Temp"
+        android:gravity="center"
+        android:text="Visibility"
+        app:layout_constraintLeft_toRightOf="@id/homeFragmentTextView2"
+        app:layout_constraintRight_toRightOf="@id/homeFragmentCardView2"
+        app:layout_constraintTop_toTopOf="@id/homeFragmentCardView2"
+        app:layout_constraintBottom_toTopOf="@id/homeFragmentVisibilityTextView"/>
 
-        app:layout_constraintBottom_toTopOf="@id/text7"
-        app:layout_constraintLeft_toRightOf="@id/icon2"
-        app:layout_constraintRight_toRightOf="@id/card2"
-        app:layout_constraintTop_toTopOf="@id/card2" />
 
     <TextView
-        android:id="@+id/text7"
-        android:layout_width="wrap_content"
+        android:id="@+id/homeFragmentWindTextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="26°C"
-
-        app:layout_constraintBottom_toBottomOf="@id/card2"
-        app:layout_constraintLeft_toLeftOf="@id/text6"
-        app:layout_constraintTop_toBottomOf="@+id/text6" />
+        android:gravity="center"
+        android:text="33 m/h"
+        app:layout_constraintLeft_toLeftOf="@id/homeFragmentTextView1"
+        app:layout_constraintRight_toRightOf="@id/homeFragmentTextView1"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentTextView1"
+        app:layout_constraintBottom_toBottomOf="@id/homeFragmentCardView2"/>
 
     <TextView
-        android:id="@+id/heading2"
+        android:id="@+id/homeFragmentHumidityTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="23 km"
+        app:layout_constraintLeft_toLeftOf="@id/homeFragmentTextView2"
+        app:layout_constraintRight_toRightOf="@id/homeFragmentTextView2"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentTextView2"
+        app:layout_constraintBottom_toBottomOf="@id/homeFragmentCardView2"/>
+
+    <TextView
+        android:id="@+id/homeFragmentVisibilityTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="64%"
+        app:layout_constraintLeft_toLeftOf="@id/homeFragmentTextView3"
+        app:layout_constraintRight_toRightOf="@id/homeFragmentTextView3"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentTextView3"
+        app:layout_constraintBottom_toBottomOf="@id/homeFragmentCardView2"/>
+
+    <TextView
+        android:id="@+id/homeFragmentHeading2"
         style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Upcoming Reminders"
-
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card1" />
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentCardView2" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/news1"
-        style="@style/Widget.Material3.CardView.Filled"
-        android:layout_width="100dp"
-        android:layout_height="140dp"
-        android:layout_margin="25dp"
-
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heading2" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/news2"
-        style="@style/Widget.Material3.CardView.Filled"
-        android:layout_width="100dp"
-        android:layout_height="140dp"
-        android:layout_margin="25dp"
-
-        app:layout_constraintLeft_toRightOf="@id/news1"
-        app:layout_constraintTop_toBottomOf="@id/heading2" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/news3"
-        style="@style/Widget.Material3.CardView.Filled"
-        android:layout_width="100dp"
-        android:layout_height="140dp"
-        android:layout_margin="25dp"
-
-        app:layout_constraintLeft_toRightOf="@id/news2"
-        app:layout_constraintTop_toBottomOf="@id/heading2" />
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeFragmentRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentHeading2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
