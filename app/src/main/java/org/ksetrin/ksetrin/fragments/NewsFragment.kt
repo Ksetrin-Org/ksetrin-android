@@ -7,12 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.gson.JsonObject
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONArray
 import org.json.JSONObject
+import org.ksetrin.ksetrin.NewsData
 import org.ksetrin.ksetrin.R
+import org.ksetrin.ksetrin.adapters.NewsAdapter
+import org.ksetrin.ksetrin.adapters.RemindersAdapter
 import java.util.*
 
 
@@ -20,6 +25,7 @@ class NewsFragment : Fragment() {
 
     private val coroutineScope =  CoroutineScope(Dispatchers.IO)
     private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,13 +38,35 @@ class NewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         sharedPreferences = requireActivity().getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
+
+        initViews()
+        modifyNews()
         getSetNews()
+    }
+
+    private fun initViews(){
+        recyclerView = requireActivity().findViewById(R.id.newsFragmentRecyclerView)
+    }
+
+    private fun modifyNews(){
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = NewsAdapter(mutableListOf())
     }
 
     private fun getSetNews() = coroutineScope.launch {
         val rawdata = getNews()
-        println(rawdata)
+        println(rawdata.toString())
+        rawdata?.let {
+            val jsonObject = JSONObject(it)
+            println(jsonObject)
+            val articles = jsonObject.getJSONArray("articles")
+            val list = jsonArrayToList(articles)
+            requireActivity().runOnUiThread {
+                recyclerView.adapter = NewsAdapter(list)
+            }
+        }
     }
+
     
     private fun getNews(): String? {
         if(!sharedPreferences.contains("newsData")  || isSavedNewsDataOld()) {
@@ -49,8 +77,27 @@ class NewsFragment : Fragment() {
             return response.text
         } else {
             println("Loading Saved Data")
-            return sharedPreferences.getString("weatherData", "")
+            return sharedPreferences.getString("newsData", "")
         }
+    }
+
+    private fun jsonArrayToList(articles: JSONArray) : MutableList<NewsData>{
+        val mutableList : MutableList<NewsData> = mutableListOf()
+        for (i in 0 until articles.length()){
+            val json = articles.getJSONObject(i)
+            val newsData = NewsData(
+                json.getString("title"),
+                json.getString("description"),
+                json.getString("content"),
+                json.getString("url"),
+                json.getString("image"),
+                json.getString("publishedAt"),
+                json.getString("source")
+            )
+            println(json.getString("title"))
+            mutableList.add(newsData)
+        }
+        return mutableList
     }
 
     private fun isSavedNewsDataOld(): Boolean {

@@ -48,6 +48,5 @@ dependencies {
     implementation 'com.github.fondesa:kpermissions-coroutines:3.3.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
     implementation "com.google.android.gms:play-services-location:19.0.1"
-    implementation 'com.github.KwabenBerko:News-API-Java:1.0.0'
-    implementation 'com.github.AraujoJordan:ExcuseMe:0.9.5'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import org.ksetrin.ksetrin.R
 
 
-class WaterBodiesFragment : Fragment() {
+class WaterFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_water_source, container, false)
+        return inflater.inflate(R.layout.fragment_water, container, false)
     }
 
 }

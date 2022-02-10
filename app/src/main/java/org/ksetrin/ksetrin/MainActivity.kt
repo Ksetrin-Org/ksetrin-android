@@ -1,18 +1,11 @@
 package org.ksetrin.ksetrin
 
-import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.fondesa.kpermissions.extension.permissionsBuilder
-import com.fondesa.kpermissions.extension.send
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.ksetrin.ksetrin.fragments.*
 
 class MainActivity : AppCompatActivity() {
@@ -62,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     setTitle("Home")
                 }
                 R.id.water_item -> {
-                    setFragment(WaterBodiesFragment())
+                    setFragment(WaterFragment())
                     setTitle("Nearby Water Sources")
                 }
                 R.id.news_item -> {
