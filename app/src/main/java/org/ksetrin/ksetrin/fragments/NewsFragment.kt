@@ -55,10 +55,8 @@ class NewsFragment : Fragment() {
 
     private fun getSetNews() = coroutineScope.launch {
         val rawdata = getNews()
-        println(rawdata.toString())
         rawdata?.let {
             val jsonObject = JSONObject(it)
-            println(jsonObject)
             val articles = jsonObject.getJSONArray("articles")
             val list = jsonArrayToList(articles)
             requireActivity().runOnUiThread {
@@ -70,13 +68,13 @@ class NewsFragment : Fragment() {
     
     private fun getNews(): String? {
         if(!sharedPreferences.contains("newsData")  || isSavedNewsDataOld()) {
-            println("Requesting API")
+            println("Requesting News API")
             val response = khttp.get("https://gnews.io/api/v4/search?country=in&lang=en&q=farmer&token=${getString(R.string.news_api_key)}")
             if (response.statusCode>=400) return null
             saveRawData(response.text)
             return response.text
         } else {
-            println("Loading Saved Data")
+            println("Loading Saved News Data")
             return sharedPreferences.getString("newsData", "")
         }
     }
@@ -94,7 +92,6 @@ class NewsFragment : Fragment() {
                 json.getString("publishedAt"),
                 json.getString("source")
             )
-            println(json.getString("title"))
             mutableList.add(newsData)
         }
         return mutableList

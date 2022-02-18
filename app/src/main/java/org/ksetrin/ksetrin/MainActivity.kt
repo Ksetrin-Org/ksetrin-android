@@ -13,10 +13,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationView : NavigationView
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var toolbar: MaterialToolbar
+    private var selectedFragment : Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         initViews()
         modifyViews()
@@ -77,8 +79,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setFragment(fragment: Fragment) {
-        val manager = supportFragmentManager.beginTransaction()
-        manager.replace(R.id.frameLayout, fragment)
-        manager.commit()
+        val fragmentInFrame = supportFragmentManager.findFragmentById(R.id.frameLayout)
+        if (fragmentInFrame != null && fragmentInFrame::class == fragment::class) return
+        selectedFragment = fragment
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, fragment)
+            .commit()
     }
+
 }

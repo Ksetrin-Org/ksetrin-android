@@ -18,15 +18,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fondesa.kpermissions.coroutines.sendSuspend
 import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.github.pwittchen.weathericonview.WeatherIconView
+import com.github.pwittchen.weathericonview.library.R.string
 import com.google.android.gms.location.LocationServices
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import org.ksetrin.ksetrin.R
 import org.ksetrin.ksetrin.RemindersData
 import org.ksetrin.ksetrin.adapters.RemindersAdapter
 import java.util.*
-import com.github.pwittchen.weathericonview.library.R.*
-import org.json.JSONStringer
 
 
 class HomeFragment : Fragment() {
@@ -56,7 +57,6 @@ class HomeFragment : Fragment() {
             requireActivity().getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
         initViews()
         modifyViews()
-
         getSetWeather()
     }
 
@@ -84,44 +84,48 @@ class HomeFragment : Fragment() {
 
     private fun getSetWeather() = coroutineScope.launch {
         if (!sharedPreferences.contains("weatherData") || isSavedWeatherDataOld()) {
-            accessLocation  {
+            accessLocation {
                 requestApi(it)
-                println("Requesting API")
+                println("Requesting Weather API")
             }
         } else {
-            println("Loading Saved Data")
+            println("Loading Saved Weather Data")
             val jsonString = sharedPreferences.getString("weatherData", "")
             updateWeatherInfo(jsonString.toString())
         }
     }
 
-    private fun requestApi(it: Location) = coroutineScope.launch{
-        val response = khttp.get("https://api.openweathermap.org/data/2.5/weather?lat=${it.latitude}&lon=${it.longitude}&appid=${getString(R.string.weather_api_key)}")
-        if (response.statusCode < 400){
+    private fun requestApi(it: Location) = coroutineScope.launch {
+        val response = khttp.get(
+            "https://api.openweathermap.org/data/2.5/weather?lat=${it.latitude}&lon=${it.longitude}&appid=${
+                getString(R.string.weather_api_key)
+            }"
+        )
+        if (response.statusCode < 400) {
             saveRawData(response.text)
             updateWeatherInfo(response.text)
         }
     }
 
     private fun updateWeatherInfo(jsonString: String) = coroutineScope.launch(Dispatchers.Main) {
-            val jsonObject = JSONObject(jsonString)
-            val temp = jsonObject.getJSONObject("main").getDouble("temp") - 273.15
-            val feels_like = jsonObject.getJSONObject("main").getDouble("feels_like") - 273.15
-            val wind = jsonObject.getJSONObject("wind").getString("speed")
-            val humidity = jsonObject.getJSONObject("main").getInt("humidity")
-            val visibility = jsonObject.getInt("visibility")
-            val placee = jsonObject.getString("name")
-            val iconCode =
-                jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon")
+        val jsonObject = JSONObject(jsonString)
+        val temp = jsonObject.getJSONObject("main").getDouble("temp") - 273.15
+        val feels_like = jsonObject.getJSONObject("main").getDouble("feels_like") - 273.15
+        val wind = jsonObject.getJSONObject("wind").getString("speed")
+        val humidity = jsonObject.getJSONObject("main").getInt("humidity")
+        val visibility = jsonObject.getInt("visibility")
+        val placee = jsonObject.getString("name")
+        val iconCode =
+            jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon")
 
-            temperatureTextView.text = String.format("%.1f", temp) + "°"
-            feelsLikeTextView.text = "Feels like " + String.format("%.1f", feels_like) + "°"
-            windTextView.text = wind
-            humidityTextView.text = humidity.toString()
-            visibilityTextView.text = visibility.toString()
-            locationTextView.text = placee
-            weatherIcon.setIconResource(getWeatherIcon(iconCode))
-        }
+        temperatureTextView.text = String.format("%.1f", temp) + "°"
+        feelsLikeTextView.text = "Feels like " + String.format("%.1f", feels_like) + "°"
+        windTextView.text = wind
+        humidityTextView.text = humidity.toString()
+        visibilityTextView.text = visibility.toString()
+        locationTextView.text = placee
+        weatherIcon.setIconResource(getWeatherIcon(iconCode))
+    }
 
     private fun getWeatherIcon(iconCode: String): String {
         when (iconCode) {
