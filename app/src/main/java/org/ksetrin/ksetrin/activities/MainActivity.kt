@@ -1,4 +1,4 @@
-package org.ksetrin.ksetrin
+package org.ksetrin.ksetrin.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
+import org.ksetrin.ksetrin.R
 import org.ksetrin.ksetrin.fragments.*
 
 class MainActivity : AppCompatActivity() {
