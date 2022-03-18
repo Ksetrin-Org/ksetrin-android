@@ -98,7 +98,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun isSavedNewsDataOld(): Boolean {
-        val jsonString = sharedPreferences.getString("weatherData", "")
+        val jsonString = sharedPreferences.getString("newsData", "")
         val jsonObject = JSONObject(jsonString.toString())
         val calendar = Calendar.getInstance()
         return calendar.timeInMillis - jsonObject.getLong("time") > 3600000
