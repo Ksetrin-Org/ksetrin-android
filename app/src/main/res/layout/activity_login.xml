@@ -1,53 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/loginActivityCardView"
+        style="@style/Widget.Material3.CardView.Filled"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:layout_margin="30dp"
-        style="@style/Widget.Material3.CardView.Filled"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_margin="30dp">
 
         <ImageView
-            android:src="@drawable/splash_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
-            />
+            android:src="@drawable/splash_icon" />
 
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
-        android:layout_below="@id/loginActivityCardView"
         android:id="@+id/loginActivityLinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/loginActivityCardView"
+        android:gravity="center"
         android:orientation="vertical"
-        android:padding="50dp"
-        android:gravity="center">
+        android:padding="50dp">
 
         <com.google.android.material.textfield.TextInputEditText
-
+            android:text="+91"
             android:id="@+id/loginActivityPhoneInput"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
+            android:hint="Phone"
             android:inputType="phone"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:hint="Phone"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
-            />
+            android:paddingEnd="10dp" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/loginActivitySendOtpButton"
-            android:text="Send OTP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="Send OTP" />
 
     </LinearLayout>
 
@@ -72,26 +69,14 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/loginActivityResendOtpButton"
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Resend OTP" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginActivityConfirmOtpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Confirm OTP" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/loginActivityConfirmOtpButton"
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Confirm OTP" />
-
-        </LinearLayout>
 
     </LinearLayout>
 
