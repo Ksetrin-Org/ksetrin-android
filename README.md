@@ -10,9 +10,9 @@
 🌾 [@supersu-man](https://www.github.com/supersu-man)
 
 ## Tech Stack 
-🌾 **Client:** React, Redux, TailwindCSS
+🌾 **Client:** Kotlin, XML
 
-🌾 **Server:** Node, Express
+🌾 **Server:** Firebase
 
 ## Ksetrin currently provides
 🌾 Weather Forecast
