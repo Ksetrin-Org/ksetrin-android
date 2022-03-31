@@ -23,7 +23,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var sendOtpButton : MaterialButton
     private lateinit var otpEditText : TextInputEditText
     private lateinit var confirmOtpButton : MaterialButton
-    //private lateinit var resendOtpButton : MaterialButton
     private lateinit var linearLayout1 : LinearLayout
     private lateinit var linearLayout2 : LinearLayout
 
@@ -46,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
         phoneNumberEditText = findViewById(R.id.loginActivityPhoneInput)
         sendOtpButton = findViewById(R.id.loginActivitySendOtpButton)
         confirmOtpButton = findViewById(R.id.loginActivityConfirmOtpButton)
-        //resendOtpButton = findViewById(R.id.loginActivityResendOtpButton)
         otpEditText = findViewById(R.id.loginActivityOtpInput)
         linearLayout1 = findViewById(R.id.loginActivityLinearLayout1)
         linearLayout2 = findViewById(R.id.loginActivityLinearLayout2)
@@ -78,12 +76,6 @@ class LoginActivity : AppCompatActivity() {
         sendOtpButton.setOnClickListener {
             startPhoneNumberVerification(phoneNumberEditText.text.toString())
         }
-
-        /*
-        resendOtpButton.setOnClickListener {
-            resendVerificationCode(storedVerificationId, resendToken)
-        }
-         */
 
         confirmOtpButton.setOnClickListener {
             val credential = PhoneAuthProvider.getCredential(storedVerificationId, otpEditText.text.toString())

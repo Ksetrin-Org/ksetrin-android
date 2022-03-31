@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.ksetrin.ksetrin.R
-import org.ksetrin.ksetrin.RemindersData
+import org.ksetrin.ksetrin.helpers.RemindersData
 
 class RemindersAdapter(private val data: MutableList<RemindersData>) : RecyclerView.Adapter<RemindersAdapter.ViewHolder>() {
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {

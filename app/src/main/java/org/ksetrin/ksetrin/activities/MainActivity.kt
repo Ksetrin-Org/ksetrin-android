@@ -1,7 +1,7 @@
 package org.ksetrin.ksetrin.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.MaterialToolbar
@@ -61,6 +61,10 @@ class MainActivity : AppCompatActivity() {
                     setFragment(WaterFragment())
                     setTitle("Nearby Water Sources")
                 }
+                R.id.reminder_item -> {
+                    setFragment(RemindersFragment())
+                    setTitle("Reminders")
+                }
                 R.id.news_item -> {
                     setFragment(NewsFragment())
                     setTitle("News and Updates")
@@ -85,7 +89,26 @@ class MainActivity : AppCompatActivity() {
         selectedFragment = fragment
         supportFragmentManager.beginTransaction()
             .replace(R.id.frameLayout, fragment)
+            .addToBackStack(null)
             .commit()
+    }
+
+    override fun onBackPressed() {
+        val fragmentInFrame = supportFragmentManager.findFragmentById(R.id.frameLayout)
+        when {
+            fragmentInFrame!! :: class.java == AddReminderFragment::class.java -> {
+                setFragment(RemindersFragment())
+                setTitle("Reminders")
+            }
+            fragmentInFrame:: class.java != HomeFragment::class.java -> {
+                setFragment(HomeFragment())
+                setTitle("Home")
+                navigationView.setCheckedItem(R.id.home_item)
+            }
+            else -> {
+                super.onBackPressed()
+            }
+        }
     }
 
 }

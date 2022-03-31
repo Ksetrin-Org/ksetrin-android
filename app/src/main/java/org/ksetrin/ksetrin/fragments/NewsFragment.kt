@@ -14,10 +14,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
-import org.ksetrin.ksetrin.NewsData
+import org.ksetrin.ksetrin.helpers.NewsData
 import org.ksetrin.ksetrin.R
 import org.ksetrin.ksetrin.adapters.NewsAdapter
-import org.ksetrin.ksetrin.adapters.RemindersAdapter
 import java.util.*
 
 
@@ -37,7 +36,7 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedPreferences = requireActivity().getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
+
 
         initViews()
         modifyNews()
@@ -45,6 +44,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun initViews(){
+        sharedPreferences = requireActivity().getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
         recyclerView = requireActivity().findViewById(R.id.newsFragmentRecyclerView)
     }
 
@@ -59,7 +59,7 @@ class NewsFragment : Fragment() {
             val jsonObject = JSONObject(it)
             val articles = jsonObject.getJSONArray("articles")
             val list = jsonArrayToList(articles)
-            requireActivity().runOnUiThread {
+            activity?.runOnUiThread {
                 recyclerView.adapter = NewsAdapter(list)
             }
         }
