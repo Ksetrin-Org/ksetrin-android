@@ -25,7 +25,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import org.ksetrin.ksetrin.R
-import org.ksetrin.ksetrin.RemindersData
+import org.ksetrin.ksetrin.helpers.RemindersData
 import org.ksetrin.ksetrin.adapters.RemindersAdapter
 import java.util.*
 
@@ -77,9 +77,9 @@ class HomeFragment : Fragment() {
             LinearLayoutManager.HORIZONTAL, false
         )
         recyclerView.layoutManager = linearManager
-        val a = RemindersData("Title1", "Timeleft1")
-        val b = RemindersData("Title2", "Timeleft2")
-        recyclerView.adapter = RemindersAdapter(mutableListOf(a, b, a, b, a))
+        val a = RemindersData("Water Flower Plants", "20 min left", "","","")
+        val b = RemindersData("Feed Cows", "2 hrs left","","","")
+        recyclerView.adapter = RemindersAdapter(mutableListOf(a, b))
     }
 
     private fun getSetWeather() = coroutineScope.launch {

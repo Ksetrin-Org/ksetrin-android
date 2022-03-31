@@ -21,7 +21,8 @@
 
     <TextView
         android:id="@+id/eachReminderTextView1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:gravity="center"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@id/eachReminderCardView"
         app:layout_constraintRight_toRightOf="@id/eachReminderCardView"
@@ -31,7 +32,8 @@
 
     <TextView
         android:id="@+id/eachReminderTextView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:gravity="center"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/eachReminderTextView1"
         app:layout_constraintBottom_toBottomOf="@id/eachReminderCardView"
