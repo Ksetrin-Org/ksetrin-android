@@ -1,6 +1,6 @@
 package org.ksetrin.ksetrin.helpers
 
-class RemindersData(var title: String, var timeleft: String, var time : String, var date : String, var repeat : String)
+class RemindersData(var title: String, var time : String, var date : String, var repeat : String)
 
 class NewsData(
     var title: String,

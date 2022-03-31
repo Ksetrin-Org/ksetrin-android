@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.TimePicker
+import android.widget.*
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.gson.JsonObject
@@ -55,6 +52,7 @@ class AddReminderFragment : Fragment() {
             jsonObject.addProperty("repeat", chip.text.toString())
             jsonArray.put(jsonObject)
             sharedPreferences.edit().putString("remindersData", jsonArray.toString()).apply()
+            Toast.makeText(requireContext(), "Reminder added successfully", Toast.LENGTH_SHORT).show()
         }
     }
 
