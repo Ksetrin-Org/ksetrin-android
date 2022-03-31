@@ -20,10 +20,13 @@ class RemindersAdapter(private val data: MutableList<RemindersData>) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView1.text = data[position].title
-        holder.textView2.text = data[position].timeleft
+        holder.textView2.text = data[position].time
     }
 
     override fun getItemCount(): Int {
+        if (data.size > 4){
+            return 4
+        }
         return data.size
     }
 

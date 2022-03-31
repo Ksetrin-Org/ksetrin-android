@@ -73,9 +73,8 @@ class RemindersFragment : Fragment() {
             val element = JSONObject(articles.getString(i))
             val data = RemindersData(
                 element.getString("title"),
-                "",
-                element.getString("date"),
                 element.getString("time"),
+                element.getString("date"),
                 element.getString("repeat")
             )
             mutableList.add(data)
