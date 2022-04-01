@@ -39,7 +39,7 @@ https://youtu.be/Sg9HVALvf9Y
 
 🌾 [@abhyareddy](https://www.github.com/abhyareddy)
 
-🌾 [@supersu-man](https://www.github.com/supersu-man)
+🌾 [@vaishujyothi](https://www.github.com/vaishujyothi)
 
 ## Contributing
 🌾 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
