@@ -31,7 +31,14 @@
 
 ## Demo
 🌾 The link below directs you to the video demonstrating how Ksetrin functions,
+https://youtu.be/Sg9HVALvf9Y
 
+## Our Team
+🌾 [@supersu-man](https://www.github.com/supersu-man)
+
+🌾 [@abhyareddy](https://www.github.com/abhyareddy)
+
+🌾 [@supersu-man](https://www.github.com/supersu-man)
 
 ## Contributing
 🌾 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
