@@ -1,14 +1,13 @@
 package org.ksetrin.ksetrin.adapters
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import org.ksetrin.ksetrin.NewsData
+import org.ksetrin.ksetrin.helpers.NewsData
 import org.ksetrin.ksetrin.R
 
 class NewsAdapter(private val data: MutableList<NewsData>) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {

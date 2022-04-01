@@ -1,13 +1,13 @@
 package org.ksetrin.ksetrin.activities
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
 import com.google.firebase.ktx.initialize
 import org.ksetrin.ksetrin.R
 

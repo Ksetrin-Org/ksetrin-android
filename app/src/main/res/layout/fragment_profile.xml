@@ -1,96 +1,100 @@
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.ProfileFragment"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    tools:context=".fragments.ProfileFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileFragmentFullNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:padding="10dp">
+        android:layout_margin="20dp"
+        android:hint="Full Name"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileFragmentFullNameEditText"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/profileFragmentAddressEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileFragmentFullNameEditText"
+        android:layout_margin="20dp"
+        android:hint="Address">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:hint="Full Name"
-            app:layout_constraintTop_toTopOf="parent"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/profileFragmentAddressEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:hint="Address"
-            app:layout_constraintTop_toBottomOf="@id/profileFragmentFullNameEditText"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="5"
-                android:minLines="3"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:maxLines="5"
+            android:minLines="3" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-        <TextView
-            android:id="@+id/profileFragmentGenderTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="Gender"
-            app:layout_constraintTop_toBottomOf="@id/profileFragmentAddressEditText" />
+    <TextView
+        android:id="@+id/profileFragmentGenderTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileFragmentAddressEditText"
+        android:layout_margin="20dp"
+        android:text="Gender"
+        app:layout_constraintTop_toBottomOf="@id/profileFragmentAddressEditText" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/profileFragmentGenderChipGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:singleSelection="true"
-            app:layout_constraintTop_toBottomOf="@id/profileFragmentGenderTextView">
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/profileFragmentGenderChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileFragmentGenderTextView"
+        android:layout_margin="20dp"
+        app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                android:checkable="true"
-                android:checked="true"
-                android:id="@+id/maleChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Male"
-                 />
-
-            <com.google.android.material.chip.Chip
-                android:checkable="true"
-                android:id="@+id/femaleChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <TextView
-            android:id="@+id/profileFragmentAgeTextView"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/maleChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="Age"
-            app:layout_constraintBottom_toBottomOf="@id/profileFragmentNumberPicker"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@id/profileFragmentNumberPicker" />
+            android:checkable="true"
+            android:checked="true"
+            android:text="Male" />
 
-        <NumberPicker
-            android:id="@+id/profileFragmentNumberPicker"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/femaleChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:layout_constraintLeft_toRightOf="@id/profileFragmentAgeTextView"
-            app:layout_constraintTop_toBottomOf="@id/profileFragmentGenderChipGroup" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:checkable="true"
+            android:text="Female" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/profileFragmentAgeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileFragmentGenderChipGroup"
+        android:layout_margin="20dp"
+        android:text="Age"
+        app:layout_constraintBottom_toBottomOf="@id/profileFragmentNumberPicker"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profileFragmentNumberPicker" />
+
+    <NumberPicker
+        android:id="@+id/profileFragmentNumberPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileFragmentAgeTextView"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toRightOf="@id/profileFragmentAgeTextView"
+        app:layout_constraintTop_toBottomOf="@id/profileFragmentGenderChipGroup" />
+
+    <Button
+        android:layout_below="@id/profileFragmentNumberPicker"
+        android:id="@+id/profileFragmentUpdateButton"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        />
 
 </RelativeLayout>
