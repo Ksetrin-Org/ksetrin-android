@@ -16,9 +16,14 @@
                 android:title="News and Updates"
                 android:checkable="true"/>
             <item
+                android:id="@+id/reminder_item"
+                android:icon="@drawable/ic_baseline_access_time_filled_24"
+                android:title="Reminders"
+                android:checkable="true"/>
+            <item
                 android:id="@+id/water_item"
                 android:icon="@drawable/ic_baseline_water_24"
-                android:title="Near by Water bodies"
+                android:title="Near by Water sources"
                 android:checkable="true"/>
             <item
                 android:id="@+id/shop_item"

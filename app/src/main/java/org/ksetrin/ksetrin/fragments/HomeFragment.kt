@@ -20,12 +20,14 @@ import com.fondesa.kpermissions.extension.permissionsBuilder
 import com.github.pwittchen.weathericonview.WeatherIconView
 import com.github.pwittchen.weathericonview.library.R.string
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONArray
 import org.json.JSONObject
 import org.ksetrin.ksetrin.R
-import org.ksetrin.ksetrin.RemindersData
+import org.ksetrin.ksetrin.helpers.RemindersData
 import org.ksetrin.ksetrin.adapters.RemindersAdapter
 import java.util.*
 
@@ -42,6 +44,7 @@ class HomeFragment : Fragment() {
     private lateinit var visibilityTextView: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var weatherIcon: WeatherIconView
+    private lateinit var progressIndicator: CircularProgressIndicator
 
 
     override fun onCreateView(
@@ -69,17 +72,47 @@ class HomeFragment : Fragment() {
         visibilityTextView = requireActivity().findViewById(R.id.homeFragmentVisibilityTextView)
         recyclerView = requireActivity().findViewById(R.id.homeFragmentRecyclerView)
         weatherIcon = requireActivity().findViewById(R.id.homeFragmentWeatherIcon)
+        progressIndicator = requireActivity().findViewById(R.id.homeFragmentProgressBar)
     }
 
     private fun modifyViews() {
-        val linearManager = LinearLayoutManager(
-            requireActivity(),
-            LinearLayoutManager.HORIZONTAL, false
-        )
+        temperatureTextView.visibility = View.INVISIBLE
+        feelsLikeTextView.visibility = View.INVISIBLE
+        locationTextView.visibility = View.INVISIBLE
+        windTextView.visibility = View.INVISIBLE
+        humidityTextView.visibility = View.INVISIBLE
+        visibilityTextView.visibility = View.INVISIBLE
+        weatherIcon.visibility = View.INVISIBLE
+        progressIndicator.isIndeterminate = true
+        val linearManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = linearManager
-        val a = RemindersData("Title1", "Timeleft1")
-        val b = RemindersData("Title2", "Timeleft2")
-        recyclerView.adapter = RemindersAdapter(mutableListOf(a, b, a, b, a))
+        val jsonArray = getReminders()
+        val mutableList = jsonArrayToList(jsonArray)
+        recyclerView.adapter = RemindersAdapter(mutableList)
+    }
+
+    private fun getReminders(): JSONArray {
+        val data = sharedPreferences.getString("remindersData", null)
+        return if (data != null) {
+            JSONArray(data)
+        } else {
+            JSONArray()
+        }
+    }
+
+    private fun jsonArrayToList(articles: JSONArray) : MutableList<RemindersData>{
+        val mutableList : MutableList<RemindersData> = mutableListOf()
+        for (i in 0 until articles.length()){
+            val element = JSONObject(articles.getString(i))
+            val data = RemindersData(
+                element.getString("title"),
+                element.getString("time"),
+                element.getString("date"),
+                element.getString("repeat")
+            )
+            mutableList.add(data)
+        }
+        return mutableList
     }
 
     private fun getSetWeather() = coroutineScope.launch {
@@ -125,6 +158,15 @@ class HomeFragment : Fragment() {
         visibilityTextView.text = visibility.toString()
         locationTextView.text = placee
         weatherIcon.setIconResource(getWeatherIcon(iconCode))
+        progressIndicator.isIndeterminate = false
+
+        temperatureTextView.visibility = View.VISIBLE
+        feelsLikeTextView.visibility = View.VISIBLE
+        locationTextView.visibility = View.VISIBLE
+        windTextView.visibility = View.VISIBLE
+        humidityTextView.visibility = View.VISIBLE
+        visibilityTextView.visibility = View.VISIBLE
+        weatherIcon.visibility = View.VISIBLE
     }
 
     private fun getWeatherIcon(iconCode: String): String {

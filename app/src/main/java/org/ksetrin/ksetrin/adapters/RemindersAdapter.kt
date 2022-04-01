@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.ksetrin.ksetrin.R
-import org.ksetrin.ksetrin.RemindersData
+import org.ksetrin.ksetrin.helpers.RemindersData
 
 class RemindersAdapter(private val data: MutableList<RemindersData>) : RecyclerView.Adapter<RemindersAdapter.ViewHolder>() {
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
@@ -20,10 +20,13 @@ class RemindersAdapter(private val data: MutableList<RemindersData>) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView1.text = data[position].title
-        holder.textView2.text = data[position].timeleft
+        holder.textView2.text = data[position].time
     }
 
     override fun getItemCount(): Int {
+        if (data.size > 4){
+            return 4
+        }
         return data.size
     }
 
