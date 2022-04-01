@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                 signInWithPhoneAuthCredential(p0)
             }
             override fun onVerificationFailed(p0: FirebaseException) {
-                println("On Verification Failed")
+                println(p0)
                 Toast.makeText(this@LoginActivity, "Verification Failed", Toast.LENGTH_SHORT).show()
             }
             override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
