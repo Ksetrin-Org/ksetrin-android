@@ -39,7 +39,7 @@ https://youtu.be/Sg9HVALvf9Y
 ## Our Team
 🌾 [@supersu-man](https://www.github.com/supersu-man)
 
-🌾 [@abhyareddy](https://www.github.com/abhyareddy)
+🌾 [@abhyaambati](https://www.github.com/abhyaambati)
 
 🌾 [@vaishujyothi](https://www.github.com/vaishujyothi)
 
